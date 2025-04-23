@@ -79,10 +79,10 @@ In Terminal #1: Activate Virtual Environment
 cd backend  
 source venv/bin/activate   # ✅ Linux / WSL  
 
-# Install Flask inside the venv (Only for the first time)  
+==> Install Flask inside the venv (Only for the first time)  
 pip install flask flask-cors  
 
-# Run the backend with Flask  
+==> Run the backend with Flask  
 python3 app.py  
 
 Step 9️⃣:  Run the development server on JavaScript/Node.js (with frameworks React, Vite).    
