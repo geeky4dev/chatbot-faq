@@ -9,6 +9,7 @@ It uses following technologies:
 ✅ React (Vite) for frontend  
 
 __________________________________________________________________________________________________
+
 📂 Project Structure    
 
 chatbot-faq/       # Root directory   
@@ -26,6 +27,7 @@ chatbot-faq/       # Root directory
 ├── docker-compose.yml (optional)  
  
 ___________________________________________________________________________________________________
+
 🚀 Development Step by Step    
 
 Step 1️⃣: Configuring Development Environmen  t  
@@ -63,11 +65,11 @@ npm install
 
 Step 6️⃣:  Add following Proxy to the default vite.config.js   
 export default {  
-  server: {  
-    proxy: {  
-      '/chat': 'http://localhost:5001'  
-    }  
-  }  
+...server: {  
+....proxy: {  
+......'/chat': 'http://localhost:5001'  
+.....}  
+...}  
 }  
 
 Step 7️⃣:  Edit the App.jsx  
