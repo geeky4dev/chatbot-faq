@@ -1,5 +1,5 @@
 # chatbot-faq
-Web app where the user asks questions and the chatbot responds with simple AI. Ideal for FAQs from a fictional company.  
+Web app where the user asks questions and the chatbot responds like a simple AI. Ideal for FAQs from a fictional company.  
 Basic logic in Pytho, simulating an AI-like model using dictionaries, the project is running locally (not dockerized)  
 to facilitate the design.  
 
