@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -22,10 +23,11 @@ def index():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    mensaje = data.get("message", "").strip().lower()  # 🔁 Clave corregida
+    mensaje = data.get("mensaje", "").strip().lower()  # ✅ Clave corregida para que coincida con el frontend
     print(f"Mensaje recibido (normalizado): '{mensaje}'")
     respuesta = RESPUESTAS_FAQ.get(mensaje, "Lo siento, no entendí tu pregunta.")
     return jsonify({"respuesta": respuesta})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    port = int(os.environ.get("PORT", 5001))  # Usa el puerto asignado por Render
+    app.run(host="0.0.0.0", port=port)
