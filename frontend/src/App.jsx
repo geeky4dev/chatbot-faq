@@ -5,11 +5,13 @@ function App() {
   const [respuesta, setRespuesta] = useState("")
 
   const enviarMensaje = async () => {
-    const res = await fetch("/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mensaje })
-    })
+    const res = await fetch('https://chat-faq-backend.onrender.com/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ message: userMessage })
+})
     const data = await res.json()
     setRespuesta(data.respuesta)
   }
