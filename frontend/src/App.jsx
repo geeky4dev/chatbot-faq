@@ -6,6 +6,8 @@ function App() {
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
+  console.log("BACKEND URL:", import.meta.env.VITE_BACKEND_URL);
+
   const enviarMensaje = async () => {
     try {
       const res = await fetch(`${backendUrl}/chat`, {
