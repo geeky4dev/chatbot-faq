@@ -4,16 +4,28 @@ function App() {
   const [mensaje, setMensaje] = useState("")
   const [respuesta, setRespuesta] = useState("")
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+
   const enviarMensaje = async () => {
-    const res = await fetch('https://chat-faq-backend.onrender.com/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ mensaje })  // aquí la variable correcta
-    })
-    const data = await res.json()
-    setRespuesta(data.respuesta)
+    try {
+      const res = await fetch(`${backendUrl}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ mensaje })
+      })
+
+      if (!res.ok) {
+        throw new Error("Error al contactar al backend")
+      }
+
+      const data = await res.json()
+      setRespuesta(data.respuesta)
+    } catch (error) {
+      console.error(error)
+      setRespuesta("Ocurrió un error al procesar tu mensaje.")
+    }
   }
 
   return (
