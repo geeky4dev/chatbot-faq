@@ -23,7 +23,7 @@ def index():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    mensaje = data.get("mensaje", "").strip().lower()  # ✅ Clave corregida para que coincida con el frontend
+    mensaje = data.get("message", "").strip().lower()  # ✅ Clave corregida para que coincida con el frontend
     print(f"Mensaje recibido (normalizado): '{mensaje}'")
     respuesta = RESPUESTAS_FAQ.get(mensaje, "Lo siento, no entendí tu pregunta.")
     return jsonify({"respuesta": respuesta})
