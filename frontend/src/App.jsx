@@ -13,7 +13,8 @@ function App() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ mensaje })
+        // Cambié la clave a 'message' para que coincida con el backend
+        body: JSON.stringify({ message: mensaje })
       })
 
       if (!res.ok) {
