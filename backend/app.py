@@ -13,14 +13,13 @@ RESPUESTAS_FAQ_ORIGINAL = {
     "qué tecnologías usas": "Uso tecnologías como Flask para el backend y React para el frontend.",
     "qué es Flask": "Flask es un framework web de Python utilizado para construir aplicaciones web."
 }
-# Crear una versión con claves en minúscula
 RESPUESTAS_FAQ = {k.lower(): v for k, v in RESPUESTAS_FAQ_ORIGINAL.items()}
 
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    mensaje = data.get("mensaje", "").strip().lower()  # Normaliza la entrada
-    print(f"Mensaje recibido (normalizado): '{mensaje}'")  # Depuración
+    mensaje = data.get("message", "").strip().lower()  # 🔁 Clave corregida
+    print(f"Mensaje recibido (normalizado): '{mensaje}'")
     respuesta = RESPUESTAS_FAQ.get(mensaje, "Lo siento, no entendí tu pregunta.")
     return jsonify({"respuesta": respuesta})
 
