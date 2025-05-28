@@ -15,6 +15,10 @@ RESPUESTAS_FAQ_ORIGINAL = {
 }
 RESPUESTAS_FAQ = {k.lower(): v for k, v in RESPUESTAS_FAQ_ORIGINAL.items()}
 
+@app.route("/")
+def index():
+    return "Backend API está funcionando"
+
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
