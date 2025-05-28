@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Permite conexión desde el frontend
+CORS(app)  # Permite conexión desde el frontend (CORS habilitado)
 
 RESPUESTAS_FAQ_ORIGINAL = {
     "hola": "¡Hola! ¿En qué puedo ayudarte?",
@@ -23,11 +23,21 @@ def index():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
-    mensaje = data.get("message", "").strip().lower()  # ✅ Clave corregida para que coincida con el frontend
+    mensaje = data.get("message", "").strip().lower()  # La clave debe ser 'message' porque así envía el frontend
     print(f"Mensaje recibido (normalizado): '{mensaje}'")
     respuesta = RESPUESTAS_FAQ.get(mensaje, "Lo siento, no entendí tu pregunta.")
     return jsonify({"respuesta": respuesta})
 
+# Ruta GET para probar que /chat está activa
+@app.route("/chat", methods=["GET"])
+def chat_get():
+    return "Ruta /chat activa para GET", 200
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5001))  # Usa el puerto asignado por Render
+    port = int(os.environ.get("PORT", 5001))  # Puerto asignado por Render o 5001 local
+
+    print("Rutas disponibles en Flask:")
+    for rule in app.url_map.iter_rules():
+        print(f"{rule} -> métodos: {list(rule.methods)}")
+
     app.run(host="0.0.0.0", port=port)
